@@ -51,4 +51,8 @@ Route::get('/home', function () {
 
 
 Route::get('search', [HomeController::class, 'timkiem'])->name('timkiem');
+
 Route::post('paging', [HomeController::class, 'paging']);
+
+
+Route::get('change', [HomeController::class, 'change'])->middleware('onlyadmin')->name('change');

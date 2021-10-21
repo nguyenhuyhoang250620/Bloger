@@ -32,7 +32,7 @@ class HomeController extends Controller
         return view('taothanhvien',compact('use'));
     }
     public function timkiem(){
-        return view('searched.search');
+        return view('searched.index');
     }
     public function paging(Request $request)
     {
@@ -94,4 +94,9 @@ class HomeController extends Controller
         echo json_encode($json_data);
     }
 
+    public function change()
+    {
+        $posts = News::all();
+        return view('change', compact('posts'));
+    }
 }

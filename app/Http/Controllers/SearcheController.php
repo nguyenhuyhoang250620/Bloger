@@ -17,7 +17,7 @@ class SearcheController extends Controller
     public function index()
     {
         $posts = News::all();
-        return view('searched.search', compact('posts'));
+        return view('searched.index', compact('posts'));
     }
 
     /**
@@ -51,7 +51,7 @@ class SearcheController extends Controller
             'title' => 'required',
         ], $messages);
         News::create($request->all());
-        return redirect()->route('searched.search')->with('success', 'tao thanh cong');
+        return redirect()->route('searched.index')->with('success', 'tao thanh cong');
     }
 
   
@@ -91,7 +91,7 @@ class SearcheController extends Controller
             'title' => 'required',
         ]);
         $post->update($request->all());
-        return redirect()->route('searched.search')->with('success', 'Company Has Been updated successfully');
+        return redirect()->route('searched.index')->with('success', 'Company Has Been updated successfully');
     }
 
     /**
@@ -100,9 +100,10 @@ class SearcheController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(News $post)
+    public function destroy($id)
     {
+        $post = News::find($id);
         $post->delete();
-        return redirect()->route('searched.search')->with('success', 'Company has been deleted successfully');
+        return redirect()->route('searched.index')->with('success', 'Company has been deleted successfully');
     }
 }

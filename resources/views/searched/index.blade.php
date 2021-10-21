@@ -1,33 +1,36 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="center-block">
-                <div class="pull-right mb-2">
-                    <a class="btn btn-success" href="{{ route('searched.create') }}"> Tạo Blog</a>
-                </div>
-                <div class="panel panel-primary" style="margin-left: 150px">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Tìm kiếm Blog</h3>
-                    </div>
-                    <div class="panel-body p-none">
-                        <table class="table data-table table-striped table-bordered">
-                            <thead>
-                                <tr>
-                                    <th class="no-sort" style="width: 5%;">#</th>
-                                    <th style="width: 75%;">Tiêu đề</th>
-                                    <th style="width: 20%%;">Ngày tạo</th>
-                                </tr>
-                            </thead>
-                            <tbody>
 
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+    <div class="row">
+        <div class="col-lg-12 margin-tb">
+            <div class="pull-left">
+                <h2> Xin chào</h2>
+            </div>
+            <div class="pull-right">
+                <a class="btn btn-success" href="{{ route('searched.create') }}"> tạo mới product</a>
             </div>
         </div>
     </div>
+
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
+
+    <table class="table data-table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th class="no-sort" style="width: 5%;">#</th>
+                <th style="width: 75%;">Tiêu đề</th>
+                <th style="width: 20%%;">Ngày tạo</th>
+            </tr>
+            </thead>
+            <tbody>
+
+
+            </tbody>
+    </table>
     <script type="text/javascript">
         var oTable = $('.data-table').DataTable({
             "oLanguage": {
