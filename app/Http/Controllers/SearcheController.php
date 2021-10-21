@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
+use App\Models\News;
+use App\Models\Post;
 use Illuminate\Http\Request;
-use App\Models\Search;
+
 
 class SearcheController extends Controller
 {
@@ -14,8 +16,8 @@ class SearcheController extends Controller
     }
     public function index()
     {
-        $search = Search::get();
-        return view('searched.index', compact('search'));
+        $posts = News::all();
+        return view('searched.search', compact('posts'));
     }
 
     /**
@@ -48,10 +50,8 @@ class SearcheController extends Controller
         $this->validate($request, [
             'title' => 'required',
         ], $messages);
-        $search = new Search;
-        $search->title = $request->title;
-        $search->save();
-        return redirect('/searched')->with('success', 'tao thanh cong');
+        News::create($request->all());
+        return redirect()->route('searched.search')->with('success', 'tao thanh cong');
     }
 
   
@@ -62,9 +62,9 @@ class SearcheController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Search $search)
+    public function show(News $post)
     {
-        return view('searched.edit', compact('search'));
+        return view('searched.show', compact('post'));
     }
 
     /**
@@ -73,9 +73,9 @@ class SearcheController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Search $search)
+    public function edit(News $post)
     {
-        return view('searched.edit', compact('search'));
+        return view('searched.edit', compact('post'));
     }
 
     /**
@@ -85,15 +85,13 @@ class SearcheController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, News $post)
     {
         $request->validate([
             'title' => 'required',
         ]);
-        $search = Search::find($id);
-        $search->title = $request->title;
-        $search->save();
-        return redirect()->route('searched.index')->with('success', 'Company Has Been updated successfully');
+        $post->update($request->all());
+        return redirect()->route('searched.search')->with('success', 'Company Has Been updated successfully');
     }
 
     /**
@@ -102,9 +100,9 @@ class SearcheController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Search $search)
+    public function destroy(News $post)
     {
-        $search->delete();
-        return redirect()->route('searched.index')->with('success', 'Company has been deleted successfully');
+        $post->delete();
+        return redirect()->route('searched.search')->with('success', 'Company has been deleted successfully');
     }
 }
