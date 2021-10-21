@@ -7,7 +7,7 @@
                 <h2> Show Post</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('searched.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('change') }}"> Back</a>
             </div>
         </div>
     </div>

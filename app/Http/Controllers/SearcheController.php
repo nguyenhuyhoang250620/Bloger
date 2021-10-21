@@ -73,8 +73,9 @@ class SearcheController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(News $post)
+    public function edit(News $post,$id)
     {
+        $post = News::find($id); 
         return view('searched.edit', compact('post'));
     }
 
@@ -85,12 +86,17 @@ class SearcheController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, News $post)
+    public function update(Request $request,$id)
     {
         $request->validate([
             'title' => 'required',
         ]);
-        $post->update($request->all());
+        $post = News::find($id);
+        $post->title = $request->title;
+        $post->save();
+
+
+
         return redirect()->route('searched.index')->with('success', 'Company Has Been updated successfully');
     }
 
