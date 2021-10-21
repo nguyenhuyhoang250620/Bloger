@@ -21,9 +21,9 @@
                 <div class="list-group">
                     <a href="#" class="list-group-item list-group-item-success">Danh sách người dùng</a>
                     @foreach ($user as $us)
-                        <a href="#" class="list-group-item active">{{ $us->name }}</a>
-                        <a href="#" class="list-group-item">Email:{{ $us->email }}</a>
-                        <a href="#" class="list-group-item">sbd:{{ $us->remember_token }}</a>
+                        <a href="#" class="list-group-item active">{{ $us->id }}</a>
+                        <a href="#" class="list-group-item">Email:{{ $us->title }}</a>
+                        <a href="#" class="list-group-item">sbd:{{ $us->created_at }}</a>
                     @endforeach
                 </div>
             </div>

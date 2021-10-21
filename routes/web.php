@@ -7,6 +7,7 @@ use App\Http\Controllers\SearcheController;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\URL;
 use App\Models\Company;
+use App\Models\News;
 use App\Models\User;
 
 
@@ -34,6 +35,7 @@ Route::get('/taothanhvien', [HomeController::class, 'index'])->middleware('onlya
 Route::resource('companies', CompanyCRUDController::class);
 
 Route::resource('searched', SearcheController::class);
+Route::get('searched/delete/{id}', [SearcheController::class, 'destroy'])->name('delete_item');
 
 
 // Route::get('dadu',function(){
@@ -45,7 +47,7 @@ Route::get('dadu', [CompanyCRUDController::class, 'test'])->middleware('Check')-
 
 Route::get('/home', function () {
     $post = \App\Models\Company::all();
-    $user = User::all();
+    $user = News::all();
     return view('hienthi', compact('post', 'user'));
 })->name('trangchu');
 

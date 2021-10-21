@@ -62,8 +62,9 @@ class SearcheController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(News $post)
-    {
+    public function show(News $post,$id)
+    {   
+        $post = News::find($id);
         return view('searched.show', compact('post'));
     }
 

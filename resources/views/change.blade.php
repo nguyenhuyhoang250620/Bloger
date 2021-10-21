@@ -21,9 +21,7 @@
                     <a class="btn btn-primary" href="{{ route('searched.edit', $post->id) }}">Edit</a>
 
                     @csrf
-                    @method('DELETE')
-
-                    <a class="btn btn-danger" href="{{ route('searched.destroy', $post->id) }}">Xóa</a>
+                    <a class="btn btn-danger" href="{{ route('delete_item', $post->id) }}">Xóa</a>
                 </form>
             </td>
         </tr>

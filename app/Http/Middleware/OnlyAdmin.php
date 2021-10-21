@@ -17,7 +17,7 @@ class OnlyAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Auth::user()->id == 2 && Auth::user()->created_at == '2021-10-15 08:41:42'){
+        if(Auth::user()->role == 1){
             return $next($request);
         }
         else{

@@ -61,14 +61,13 @@
                 @if (Route::has('trangchu'))
                     <a class="nav-link" href="{{ route('trangchu') }}">Trang chủ</a>
                 @endif
-                @if (Route::has('taothanhvien'))
-                    <a class="nav-link" href="{{ route('taothanhvien') }}">Tạo thành viên</a>
-                @endif
+            
                 @if (Route::has('timkiem'))
                     <a class="nav-link" href="{{ route('timkiem') }}">Tìm kiêm</a>
                 @endif
 
-                @if (Route::has('change'))
+                @if (Auth::check() && Auth::user()->role == 1)
+                    <a class="nav-link" href="{{ route('taothanhvien') }}">Tạo thành viên</a>
                     <a class="nav-link" href="{{ route('change') }}">Sửa</a>
                 @endif
 
